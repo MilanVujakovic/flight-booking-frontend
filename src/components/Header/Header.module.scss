@@ -17,6 +17,11 @@ $nav-bar-padding: 1.7rem;
     overflow: hidden;
 }
 
+.navbar li {
+    box-shadow: 0;
+    transition: box-shadow 0.5s;
+}
+
 .navbar li a {
     padding: $nav-bar-padding;
     text-align: center;
@@ -50,7 +55,7 @@ $nav-bar-padding: 1.7rem;
 }
 
 .navbar-main-link:hover {
-    box-shadow: inset 0 -0.3rem 0 $secondary-color;
+    box-shadow: inset 0 -0.3rem 0 $secondary-light-color;
     a {
         color: $secondary-light-color;
     }

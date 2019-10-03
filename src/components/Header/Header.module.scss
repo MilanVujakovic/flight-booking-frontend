@@ -1,10 +1,10 @@
 @import "../../assets/sass/colors.scss";
 
-$nav-bar-padding: 1.5rem;
+$nav-bar-padding: 1.7rem;
 
 .header {
     background-color: $primary-color;
-    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0.1rem 1rem rgba(0, 0, 0, 0.5);
 }
 
 .navbar {
@@ -14,15 +14,20 @@ $nav-bar-padding: 1.5rem;
     margin-top: auto;
     margin-bottom: 0;
     list-style: none;
+    overflow: hidden;
 }
 
-
-
-.navbar li {
-    cursor: pointer;
+.navbar li a {
     padding: $nav-bar-padding;
-    color: white;
     text-align: center;
+    text-decoration: none;
+    color: white;
+    display: block;
+
+    -webkit-transition: color 0.5s;
+    -moz-transition: color 0.5s;
+    -o-transition: color 0.5s;
+    transition: color 0.5s;
 }
 
 %navbar-text-icon {
@@ -33,20 +38,22 @@ $nav-bar-padding: 1.5rem;
 .navbar-text-icon-right {
     @extend %navbar-text-icon;
     div {
-        margin-right: 10px;
+        margin-right: 1rem;
     }
 }
 
 .navbar-text-icon-left {
     @extend %navbar-text-icon;
     div {
-        margin-left: 10px;
+        margin-left: 1rem;
     }
 }
 
-.navbar-main-button:hover {
-    box-shadow: inset 0 -3px 0 $secondary-color;
-    color: $secondary-light-color;
+.navbar-main-link:hover {
+    box-shadow: inset 0 -0.3rem 0 $secondary-color;
+    a {
+        color: $secondary-light-color;
+    }
 }
 
 .navbar-right {
@@ -58,14 +65,14 @@ $nav-bar-padding: 1.5rem;
 }
 
 li:last-child {
-    margin-right: 2rem;
+    margin-right: 4rem;
 }
 
-.sign-up-button {
+.sign-up-link {
     background-color: $secondary-color;
 }
 
-.sign-up-button:hover {
+.sign-up-link:hover {
     background-color: $secondary-light-color;
 }
 

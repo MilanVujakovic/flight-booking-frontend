@@ -36,7 +36,6 @@ const Header = props => (
             </ul>
         </div>
     </nav>
-    /*<div className={styles["back"]}></div>*/
 );
 
 export default Header;

@@ -1,0 +1,182 @@
+@import "../../assets/sass/colors.scss";
+
+h1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 70vw;
+    height: 10vh;
+    margin-left: 20vw;
+
+    color: $primary-contrast-color;
+    text-transform: uppercase;
+}
+
+.search-back-image {
+    
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+
+    background-image: url(../../assets/images/airport-search-lower.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: $secondary-color;
+    max-width: 100vw;
+    min-height: 60vh;
+    top: 0;
+    left: 0;
+
+    box-shadow: inset 0 0 1rem black;
+    color: $primary-contrast-color;
+}
+
+.search {
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+
+    width: 60vw;
+    height: 40vh;
+
+    margin: auto;
+
+    border-radius: 2rem;
+    box-shadow: 0 0 2rem 0.1rem black;
+
+    background-color: rgba($primary-color, 0.9);
+}
+
+/* Main content */
+.search-type {
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    div {
+        margin: auto;
+        padding: 1rem;
+
+        &:hover {
+            cursor: pointer;
+            box-shadow: inset 0 -0.3rem 0 $secondary-light-color;
+        }
+    }
+}
+
+.search-boxes {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    margin: auto;
+}
+
+.search-submit {
+    margin: auto;
+}
+/* --------------------------------- */
+
+.flight-search-box {
+    display: flex;
+    flex-direction: row;
+    align-content: stretch;
+}
+
+.box {
+    flex: 1;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    height: 9rem;
+    margin: auto 0;
+    border-radius: 1vh;
+    border: 0.1rem solid $primary-contrast-dark-color;
+    padding: 1rem;
+    background-color: $primary-contrast-color;
+    color:$primary-contrast-text-color;
+    div {
+        text-align: left;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &:hover {
+        background-color: $primary-contrast-dark-color;
+    }
+}
+
+.from-search-box {
+    composes: box;
+    flex: 2;
+    margin-left: 1vw;
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.to-search-box {
+    composes: box;
+    flex: 2;
+    border-right: 0;
+    border-radius: 0;
+}
+
+.calendar-box {
+    composes: box;
+    border-radius: 0;
+}
+
+.departure-calendar-box {
+    composes: calendar-box;
+}
+
+.return-calendar-box {
+    composes: calendar-box;
+    border-left: 0;
+}
+
+.class-travellers-box {
+    composes: box;
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-right: 1vw;
+    :not(:first-child) {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+}
+
+
+.search-box-city {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+
+/* --------------------------- */
+
+button {
+    cursor: pointer;
+    padding: 1.3rem;
+    border-style: none;
+    
+    font-family: inherit;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+
+    margin: auto;
+
+    border: 0.3rem solid $secondary-light-color;
+
+    background-color: $primary-color;
+    color: $primary-text-color;
+
+    &:hover {
+        background-color: $secondary-light-color;
+    }
+}

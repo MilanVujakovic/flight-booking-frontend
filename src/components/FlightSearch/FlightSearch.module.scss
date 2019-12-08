@@ -156,27 +156,3 @@ h1 {
     font-size: 3rem;
     font-weight: 700;
 }
-
-
-/* --------------------------- */
-
-button {
-    cursor: pointer;
-    padding: 1.3rem;
-    border-style: none;
-    
-    font-family: inherit;
-    font-size: 1.6rem;
-    text-transform: uppercase;
-
-    margin: auto;
-
-    border: 0.3rem solid $secondary-light-color;
-
-    background-color: $primary-color;
-    color: $primary-text-color;
-
-    &:hover {
-        background-color: $secondary-light-color;
-    }
-}

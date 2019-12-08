@@ -1,0 +1,66 @@
+@import "../../assets/sass/colors.scss";
+
+.flight-info {
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: row;
+    width: 50vw;
+    height: 10vh;
+    margin: auto;
+    margin-bottom: 30px;
+    border-radius: 1rem;
+    border: 0.2rem solid $primary-contrast-dark-color;
+    &:hover {
+    }
+}
+
+.airline-logo {
+    flex: 0.5;
+    border-top-left-radius: 0.7rem;
+    border-bottom-left-radius: 0.7rem;
+    background-image: url(../../assets/images/Coperta.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: $secondary-color;
+}
+
+.time-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.time {
+    flex: 1;
+    margin: auto;
+    
+    font-size: 3rem;
+    font-weight: 300;
+    text-align: center;
+}
+
+.duration {
+    flex: 1;
+    margin: auto;
+
+    text-align: center;
+}
+
+.price {
+    flex: 1;
+    margin: auto;
+
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.select-button {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin: auto;
+}

@@ -1,0 +1,64 @@
+@import "../../assets/sass/colors.scss";
+
+%button {
+    cursor: pointer;
+    border-style: none;
+    border-radius: 0.5rem;
+    font-family: inherit;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    margin: auto;
+}
+
+.secondary-button {
+    @extend %button;
+    border: 0.3rem solid $secondary-color;
+    padding: 0.5rem 3rem;
+
+    background-color: $secondary-color;
+    color: $secondary-text-color;
+
+    transition: all 0.5s ease;
+
+    &:hover {
+        border-color: $secondary-light-color;
+        background-color: $secondary-light-color;
+        transition: all 0.5s ease;
+    }
+}
+
+.secondary-large-button {
+    @extend %button;
+    border: 0.3rem solid $secondary-color;
+    padding: 1rem 10rem;
+
+    background-color: $secondary-color;
+    color: $secondary-text-color;
+
+    transform: translateY(0.2rem);
+    transition: all 0.5s ease;
+
+    &:hover {
+        border-color: $secondary-light-color;
+        background-color: $secondary-light-color;
+        transform: translateY(-0.2rem);
+        transition: all 0.5s ease;
+    }
+}
+
+.secondary-contrast-button {
+    @extend %button;
+    border: 0.1rem solid $secondary-color;
+    padding: 1rem 3rem;
+    
+    background: white;
+    color: $secondary-color;
+    transition: all 0.5s ease;
+
+    &:hover {
+        border-color: $secondary-light-color;
+        background-color: $secondary-light-color;
+        color: $secondary-text-color;
+        transition: all 0.5s ease;
+    }
+}

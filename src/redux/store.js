@@ -1,8 +1,8 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
-import data from "./reducers/data";
-import user from "./reducers/user";
+import data from "./reducers/dataReducers";
+import user from "./reducers/userReducers";
 
 const initialState = {};
 

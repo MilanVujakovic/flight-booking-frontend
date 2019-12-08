@@ -14,6 +14,7 @@ import Header from "../Header"
 import home from "../../pages/home";
 import signup from "../../pages/signup";
 import airlines from "../../pages/airlines";
+import Footer from "../Footer/Footer";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route exact path="/airlines" component={airlines} />
             <Route exact path="/sign-up" component={signup} />
           </Switch>
+          <Footer />
         </Router>
     </Provider>
   );

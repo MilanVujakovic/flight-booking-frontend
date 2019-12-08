@@ -1,8 +1,10 @@
 import React from "react";
 
-import FlightSearchBox from "./FlightSearchBox";
-
 import styles from "./FlightSearch.module.scss";
+
+
+import FlightSearchBox from "./FlightSearchBox";
+import Button from "../Button";
 
 const FlightSearch = props => (
     <div className={styles["search-back-image"]}>
@@ -24,7 +26,7 @@ const FlightSearch = props => (
 
             {/* Search button */}
             <div className={styles["search-submit"]}>
-                <button>Search</button>
+                <Button>Search</Button>
             </div>
         </div>
     </div>

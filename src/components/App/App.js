@@ -12,6 +12,7 @@ import Header from "../Header"
 
 // Pages
 import home from "../../pages/home";
+import login from "../../pages/login";
 import signup from "../../pages/signup";
 import airlines from "../../pages/airlines";
 import Footer from "../Footer/Footer";
@@ -24,6 +25,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={home} />
             <Route exact path="/airlines" component={airlines} />
+            <Route exact path="/login" component={login} />
             <Route exact path="/sign-up" component={signup} />
           </Switch>
           <Footer />

@@ -1,4 +1,4 @@
-@import "../../assets/sass/colors.scss";
+@import "../../../assets/sass/colors.scss";
 
 .flight-info {
     cursor: pointer;
@@ -7,23 +7,25 @@
     flex-direction: row;
     width: 50vw;
     height: 10vh;
+    border-radius: 1vh;
     margin: auto;
-    margin-bottom: 30px;
-    border-radius: 1rem;
-    border: 0.2rem solid $primary-contrast-dark-color;
+    margin-bottom: 1vh;
+    background-color: $secondary-color;
+    box-shadow: 0 0.3vh 1vh 0 $shadow-color;
     &:hover {
+        background-color: $primary-light-color;
+        color: $primary-text-color;
     }
 }
 
 .airline-logo {
     flex: 0.5;
-    border-top-left-radius: 0.7rem;
-    border-bottom-left-radius: 0.7rem;
-    background-image: url(../../assets/images/Coperta.jpg);
+    margin: 1vh;
+    background-image: url(../../../assets/images/Coperta.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: $secondary-color;
+    background-color: $primary-color;
 }
 
 .time-box {

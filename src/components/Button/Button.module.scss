@@ -1,64 +1,56 @@
 @import "../../assets/sass/colors.scss";
 
+$padding-standard: 1rem 3rem;
+$padding-wide: 1rem 7rem;
+
 %button {
     cursor: pointer;
     border-style: none;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     font-family: inherit;
     font-size: 1.6rem;
+    font-weight: 500;
     text-transform: uppercase;
     margin: auto;
+    outline: none;
 }
 
-.secondary-button {
+.primary-secondary-button {
     @extend %button;
-    border: 0.3rem solid $secondary-color;
-    padding: 0.5rem 3rem;
-
-    background-color: $secondary-color;
-    color: $secondary-text-color;
-
-    transition: all 0.5s ease;
-
-    &:hover {
-        border-color: $secondary-light-color;
-        background-color: $secondary-light-color;
-        transition: all 0.5s ease;
-    }
-}
-
-.secondary-large-button {
-    @extend %button;
-    border: 0.3rem solid $secondary-color;
-    padding: 1rem 10rem;
-
-    background-color: $secondary-color;
-    color: $secondary-text-color;
-
-    transform: translateY(0.2rem);
-    transition: all 0.5s ease;
-
-    &:hover {
-        border-color: $secondary-light-color;
-        background-color: $secondary-light-color;
-        transform: translateY(-0.2rem);
-        transition: all 0.5s ease;
-    }
-}
-
-.secondary-contrast-button {
-    @extend %button;
-    border: 0.1rem solid $secondary-color;
-    padding: 1rem 3rem;
-    
-    background: white;
+    padding: $padding-standard;
+    border: 0.2rem solid $secondary-color;
+    background-color: inherit;
     color: $secondary-color;
-    transition: all 0.5s ease;
 
     &:hover {
-        border-color: $secondary-light-color;
-        background-color: $secondary-light-color;
-        color: $secondary-text-color;
-        transition: all 0.5s ease;
+        border-color: $secondary-color;
+        background-color: $secondary-color;
+        color: $primary-color;
     }
 }
+
+.primary-secondary-wide-button {
+    @extend .primary-secondary-button;
+    padding: $padding-wide;
+}
+
+.secondary-primary-button {
+    @extend %button;
+    padding: $padding-standard;
+    border: 0.2rem solid $primary-color;
+
+    background-color: inherit;
+    color: $primary-color;
+
+    &:hover {
+        background-color: $primary-color;
+        color: $primary-text-color;
+    }
+}
+
+.secondary-primary-wide-button {
+    @extend .secondary-primary-button;
+    padding: $padding-wide;
+}
+
+

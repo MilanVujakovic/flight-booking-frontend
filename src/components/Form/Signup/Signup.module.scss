@@ -1,0 +1,25 @@
+@import "../../../assets/sass/colors.scss";
+@import "../Form.module.scss";
+
+
+.dot-bar {
+    width: 50%;
+    margin: 0.5vh;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.dot {
+    width: 2vh;
+    height: 2vh;
+    border: 0.1vh solid $primary-color;
+    border-radius: 100%;
+}
+
+.dot-focus {
+    @extend .dot;
+    background-color: $primary-color;
+}

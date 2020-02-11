@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "./FlightInfo.module.scss";
+import styles from "./FlightInfoItem.module.scss";
 
-import Button from "../Button";
+import Button from "../../Button";
 
-const FlightInfo = props => (
-    <div className={styles["flight-info"]}>
+const FlightInfoItem = props => (
+    <div className={styles["flight-info"]} onMouseEnter={props.mouseEnter} onMouseLeave={props.mouseLeave}>
         <div className={styles["airline-logo"]}/>
         <div className={styles["time-box"]}>
             <div className={styles["time"]}>11:30 - 13:30</div>
@@ -12,8 +12,8 @@ const FlightInfo = props => (
         </div>
         <div className={styles["duration"]}>2h</div>
         <div className={styles["price"]}>300$</div>
-        <div className={styles["select-button"]}><Button>Select</Button></div>
+        <div className={styles["select-button"]}><Button type={props.buttonType}>Select</Button></div>
     </div>
 );
 
-export default FlightInfo;
+export default FlightInfoItem;

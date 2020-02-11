@@ -8,7 +8,7 @@ h1 {
     height: 10vh;
     margin-left: 20vw;
 
-    color: $primary-contrast-color;
+    color: $primary-text-color;
     text-transform: uppercase;
 }
 
@@ -29,7 +29,7 @@ h1 {
     left: 0;
 
     box-shadow: inset 0 0 1rem black;
-    color: $primary-contrast-color;
+    color: $secondary-color;
 }
 
 .search {
@@ -60,7 +60,7 @@ h1 {
 
         &:hover {
             cursor: pointer;
-            box-shadow: inset 0 -0.3rem 0 $secondary-light-color;
+            box-shadow: inset 0 -0.3rem 0 $secondary-color;
         }
     }
 }
@@ -92,10 +92,10 @@ h1 {
     height: 9rem;
     margin: auto 0;
     border-radius: 1vh;
-    border: 0.1rem solid $primary-contrast-dark-color;
+    border: 0.3rem solid $primary-color;
     padding: 1rem;
-    background-color: $primary-contrast-color;
-    color:$primary-contrast-text-color;
+    background-color: $secondary-color;
+    color:$secondary-text-color;
     div {
         text-align: left;
         display: inline-block;
@@ -105,7 +105,8 @@ h1 {
     }
 
     &:hover {
-        background-color: $primary-contrast-dark-color;
+        background-color: $primary-light-color;
+        color: $primary-text-color;
     }
 }
 

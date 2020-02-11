@@ -9,4 +9,4 @@ export class FooterContainer extends Component {
     }
 }
 
-export default FooterContainer
+export default FooterContainer;

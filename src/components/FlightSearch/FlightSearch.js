@@ -26,7 +26,7 @@ const FlightSearch = props => (
 
             {/* Search button */}
             <div className={styles["search-submit"]}>
-                <Button>Search</Button>
+                <Button type="primary-secondary-wide-button">Search</Button>
             </div>
         </div>
     </div>

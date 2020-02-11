@@ -1,7 +1,6 @@
 import React from "react"
 import styles from "./Header.module.scss"
 import { IoIosAirplane } from "react-icons/io";
-import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 const Header = props => (
@@ -20,19 +19,15 @@ const Header = props => (
                 <li className={styles["navbar-main-link"]}>
                     <Link to="/airlines">Airlines</Link>
                 </li>
+                <div className={styles["navbar-right"]}>
+                    <li className={styles["navbar-main-link"]}>
+                        <Link to="/login">Login</Link>
+                    </li>
 
-                <li className={styles["navbar-right"]}>
-                    <a href="#0">
-                        <div className={styles["navbar-text-icon-right"]}>
-                            <div>Login</div>
-                            <IoIosArrowDropdownCircle />
-                        </div>
-                    </a>
-                </li>
-
-                <li>
-                    <Link to="/sign-up" className={styles["sign-up-link"]}>Sign up</Link>
-                </li>
+                    <li>
+                        <Link to="/sign-up" className={styles["sign-up-link"]}>Sign up</Link>
+                    </li>
+                </div>
             </ul>
         </div>
     </nav>

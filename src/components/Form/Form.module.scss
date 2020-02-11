@@ -1,0 +1,58 @@
+@import "../../assets/sass/colors.scss";
+
+h3 {
+    margin-right: auto;
+    font-weight: 500;
+    color: $primary-light-color;
+    border-bottom: 0.2vh solid $primary-light-color;
+    width: 100%;
+}
+
+
+h2 {
+    flex: 1;
+    color: $primary-light-color;
+    margin-bottom: 2vh;
+}
+
+.step-page {
+    flex: 15;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $primary-light-color;
+}
+
+.form {
+    width: 30%;
+    align-self: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+
+    margin: 2vh;
+    padding: 2vh 2vw;
+    border-radius: 2vh;
+    box-shadow: 0 0.3vh 1vh 0 $shadow-color;
+    background-color: $secondary-color;    
+}
+
+.progress-bar {
+    flex: 1;
+    
+    width: 100%;
+    padding: inherit;
+    display: flex;
+    justify-content: space-evenly;
+}

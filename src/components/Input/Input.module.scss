@@ -1,18 +1,13 @@
 @import "../../assets/sass/colors.scss";
 
 .input-div {
-    width: 60%;
-
+    width: inherit;
+    height: inherit;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
     margin-top: 1vh;
     padding: 2vh 2vw;
-}
-
-.input-narrow-div {
-    @extend .input-div;
-    width: 30%;
+    font-weight: 500;
 }
 
 input[type=text], 
@@ -22,31 +17,45 @@ input[type=tel],
 input[type=number] {
     width: 100%;
     border-style: none;
-    box-shadow: inset 0 -0.1rem 0 $secondary-dark-color;
     outline: none;
     
     padding: 1rem;
 
     font-size: 1.6rem;
     
-    color: $secondary-text-color;
-    background: none;
+    background: $secondary-dark-color;
+    color: $text-color;
 
     transition: 0.5s;
     &:focus {
-        box-shadow: inset 0 -0.2rem 0 $primary-color;
+        background-color: $secondary-darker-color;
         caret-color: $primary-color;
         color: $primary-color;
     }
 }
 
 label {
+    margin-bottom: 1rem;
     margin-right: auto;
     font-size: 1.6rem;
-    color: $primary-color;
+    font-weight: 500;
+    color: $font-color;
     transition: 0.5s;
 }
 
 .error-message {
-    background: red;
+    display: none;
+    width: 100%;
+    padding: 1rem 2rem;
+    opacity: 0.8;
+    background: #f44336;
+    color: #ffffff;
+    p {
+        margin: 0;
+    }
+}
+
+.required:after {
+    content: ' *';
+    color: red;
 }

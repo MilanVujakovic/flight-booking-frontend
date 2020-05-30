@@ -21,7 +21,7 @@ const Header = props => (
                 </li>
                 <div className={styles["navbar-right"]}>
                     <li className={styles["navbar-main-link"]}>
-                        <Link to="/login">Login</Link>
+                        <Link to="/login">Log in</Link>
                     </li>
 
                     <li>

@@ -1,12 +1,12 @@
 @import "../../assets/sass/colors.scss";
 
-$padding-standard: 1rem 3rem;
-$padding-wide: 1rem 7rem;
+$padding-standard: 1.5rem 3rem;
 
 %button {
+    width: inherit;
+    height: inherit;
     cursor: pointer;
     border-style: none;
-    border-radius: 1rem;
     font-family: inherit;
     font-size: 1.6rem;
     font-weight: 500;
@@ -15,7 +15,22 @@ $padding-wide: 1rem 7rem;
     outline: none;
 }
 
-.primary-secondary-button {
+/* ----------- Default button ---------- */
+
+.primary-button {
+    @extend %button;
+    padding: $padding-standard;
+
+    background-color: $primary-color;
+    color: $primary-text-color;
+
+    &:hover {
+        background-color: $primary-light-color;
+        color: $primary-text-color;
+    }
+}
+
+.secondary-button {
     @extend %button;
     padding: $padding-standard;
     border: 0.2rem solid $secondary-color;
@@ -29,12 +44,10 @@ $padding-wide: 1rem 7rem;
     }
 }
 
-.primary-secondary-wide-button {
-    @extend .primary-secondary-button;
-    padding: $padding-wide;
-}
 
-.secondary-primary-button {
+/* ------------ Outlined button ------------*/
+
+.primary-outlined-button {
     @extend %button;
     padding: $padding-standard;
     border: 0.2rem solid $primary-color;
@@ -48,9 +61,18 @@ $padding-wide: 1rem 7rem;
     }
 }
 
-.secondary-primary-wide-button {
-    @extend .secondary-primary-button;
-    padding: $padding-wide;
+.secondary-outlined-button {
+    @extend %button;
+    padding: $padding-standard;
+    border: 0.2rem solid $secondary-color;
+    background-color: inherit;
+    color: $secondary-color;
+
+    &:hover {
+        border-color: $secondary-color;
+        background-color: $secondary-color;
+        color: $primary-color;
+    }
 }
 
 

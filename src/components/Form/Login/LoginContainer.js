@@ -21,6 +21,10 @@ export default class LoginContainer extends Component {
         });
     }
 
+    componentDidMount() {
+        document.getElementById("email").focus();
+    }
+
     render() {
         return (
             <Login handleChange={this.handleChange} handleSubmit={this.handleSubmit}>

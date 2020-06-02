@@ -1,23 +1,35 @@
 import React, { Component } from 'react'
 import Login from './Login';
 
+// Validation
+import { validateEmail, validatePassword } from '../../../utils/FormValidation';
+
 export default class LoginContainer extends Component {
 
     constructor() {
         super();
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            errors: {
+                email: '',
+                password: ''
+            }
         };
     }
 
-    handleSubmit = (e) => {
-        alert("submit");
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        const emailError = validateEmail('Email', this.state.email);
+        const passwordError = validatePassword('Password', this.state.password);
+        this.setState({errors: {email: emailError, password: passwordError}});
     }
 
-    handleChange = (e) => {
+    handleChange = (event) => {
+        event.preventDefault();
         this.setState({
-            [e.target.id]: e.target.value
+            [event.target.id]: event.target.value
         });
     }
 
@@ -27,7 +39,7 @@ export default class LoginContainer extends Component {
 
     render() {
         return (
-            <Login handleChange={this.handleChange} handleSubmit={this.handleSubmit}>
+            <Login handleChange={this.handleChange} handleSubmit={this.handleSubmit} errors={this.state.errors}>
                 
             </Login>
         )

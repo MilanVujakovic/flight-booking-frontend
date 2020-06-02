@@ -8,12 +8,15 @@ $secondary-dark-color: #eeeeee;
 $secondary-darker-color: #d1d1d1;
 $secondary-text-color: #2e94b9;
 
+$tertiary-color: #81ffd9;
 
-$highlight-color: #c94e4e;
+
+$highlight-color: rgba(244,67,54, 0.8);
+$highlight-contrast-color: #ffffff;
 $shadow-color: rgba(0, 0, 0, 0.19);
 
 $text-color: $primary-dark-color;
 $link-color: $primary-color;
 $font-color: black;
 
-$hover-color: #81ffd9;
+$hover-color: $tertiary-color;

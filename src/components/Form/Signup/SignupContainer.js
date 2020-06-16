@@ -5,12 +5,13 @@ export default class SignupContainer extends Component {
     constructor() {
         super();
         this.state = {
-            step: 1,
+            changeFocus: true,
+            stepCount: 1,
             email: '',
             password: '',
             passwordVerify: '',
             fullName: '',
-            displayName: '',
+            username: '',
             dateOfBirth: '',
             adress: '',
             city: '',
@@ -19,33 +20,74 @@ export default class SignupContainer extends Component {
         };
     }
 
-    handleForward = () => {
+    handleForward = event => {
+        event.preventDefault();
         this.setState(state => {
-            return {step: state.step + 1};
+            return { 
+                stepCount: state.stepCount + 1, 
+                changeFocus: true 
+            };
         });
     }
 
-    handleBack = () => {
+    handleBack = event => {
+        event.preventDefault();
         this.setState(state => {
-            return {step: state.step - 1};
+            return { 
+                stepCount: state.stepCount - 1, 
+                changeFocus: true 
+            };
         });
     }
 
-    handleSubmit = (event) => {
+    handleFocus = () => {
+        switch(this.state.stepCount) {
+            case 1:
+                document.getElementById('email').focus();
+                break;
+            case 2:
+                document.getElementById('username').focus();
+                break;
+            case 3:
+                document.getElementById('address').focus();
+                break;
+            default:
+                document.getElementById('email').focus();
+        }
+    }
+
+    handleSignup = event => {
+        event.preventDefault();
         alert("submit");
     }
 
-    handleChange = (event) => {
+    handleChange = event => {
         this.setState({
             [event.target.id]: event.target.value
         });
     }
 
+    componentDidMount = () => {
+        this.handleFocus();
+    }
+
+    componentDidUpdate = () => {
+        const changeFocus = this.state.changeFocus;
+        if(changeFocus){
+            this.handleFocus();
+            this.setState({ changeFocus: false });
+        }
+    }
+
     render() {
         return (
-            <Signup {...this.state} handleChange={this.handleChange} handleForward={this.handleForward} handleBack={this.handleBack}>
-                
-            </Signup>
+            <Signup 
+                {...this.state} 
+                onInputChange={ this.handleChange } 
+                onForward={ this.handleForward } 
+                onBack={ this.handleBack } 
+                onSignup={ this.handleSignup }
+            />
         )
     }
 }

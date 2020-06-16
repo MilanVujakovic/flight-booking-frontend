@@ -9,15 +9,25 @@ import propTypes from 'prop-types';
  * name, type, id, error, required, maxLength(default is 64)
  * 
  */
-const Input = props => (
-  <div className={styles["input-div"]}>
-    <label htmlFor={props.name} className={props.required === 'required' && styles['required']}>{props.name}</label>
-    <input type={props.type} name={props.name} id={props.id} value={props.value} spellCheck="false" maxLength={props.maxLength} required={props.required} onChange={props.onChange}/>
-    
-    {props.error.length > 0 &&
-      <span className={styles["error-message"]}>{props.error}</span>}
-  </div>
-);
+const Input = props => {
+  return (
+    <div className={styles["input-div"]}>
+      <label htmlFor={props.name} className={props.required && styles['required']}>{ props.label }</label>
+      <input 
+        type={props.type} 
+        name={props.name} 
+        id={props.id} 
+        value={props.value} 
+        spellCheck="false" 
+        maxLength={props.maxLength} 
+        onChange={props.onChange}
+      />
+      
+      {props.error.length > 0 &&
+        <span className={styles["error-message"]}>{props.error}</span>}
+    </div>
+  );
+}
 
 Input.propTypes = {
   name: propTypes.string.isRequired,
@@ -25,7 +35,8 @@ Input.propTypes = {
   id: propTypes.string.isRequired,
   error: propTypes.string,
   maxLength: propTypes.string,
-  required: propTypes.string.isRequired
+  required: propTypes.bool,
+  onChange: propTypes.func
 }
 
 Input.defaultProps = {

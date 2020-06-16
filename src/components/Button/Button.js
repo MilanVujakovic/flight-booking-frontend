@@ -6,6 +6,7 @@ const Button = props => (
         className={styles[props.type === undefined ? "secondary-button" : props.type]} 
         onClick={props.onClick}
         disabled={props.disabled}
+        type="button"
     >
         {props.children}
     </button>

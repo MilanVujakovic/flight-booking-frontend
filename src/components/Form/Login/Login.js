@@ -13,20 +13,22 @@ const Login = props => {
                 
                 <div className={styles["step-page"]}>
                         <Input
+                            label="Email"
                             name="email"
                             type="email" 
                             id="email" 
                             onChange={onChange}
                             error={email} 
-                            required="required" 
+                            required
                         />
                         <Input 
+                            label="Password"
                             name="password" 
                             type="password" 
                             id="password" 
                             onChange={onChange} 
                             error={password}
-                            required="required"
+                            required
                         />
                         <div className={styles["in-line"]}>
                             <div>

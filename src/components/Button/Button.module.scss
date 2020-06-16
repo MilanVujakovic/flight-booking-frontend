@@ -1,12 +1,16 @@
 @import "../../assets/sass/colors.scss";
 
-$padding-standard: 1.5rem 3rem;
+$border-outlined: 0.2rem;
+
+$padding-standard: 1.5rem 2rem;
+$padding-outlined: (1.5 - $border-outlined) 2rem;
 
 %button {
     width: inherit;
     height: inherit;
     cursor: pointer;
     border-style: none;
+    white-space: nowrap;
     font-family: inherit;
     font-size: 1.6rem;
     font-weight: 500;
@@ -36,14 +40,13 @@ $padding-standard: 1.5rem 3rem;
 .secondary-button {
     @extend %button;
     padding: $padding-standard;
-    border: 0.2rem solid $secondary-color;
-    background-color: inherit;
-    color: $secondary-color;
+
+    background-color: $tertiary-color;
+    color: $primary-color;
 
     &:hover {
-        border-color: $secondary-color;
-        background-color: $secondary-color;
-        color: $primary-color;
+        background-color: $primary-color;
+        color: $secondary-color;
     }
 }
 
@@ -52,15 +55,17 @@ $padding-standard: 1.5rem 3rem;
 
 .primary-outlined-button {
     @extend %button;
-    padding: $padding-standard;
-    border: 0.2rem solid $primary-color;
+    padding: $padding-outlined;
+    border: $border-outlined solid $primary-color;
 
     background-color: inherit;
     color: $primary-color;
-
+    transition: border-color 0.5s linear, color 0.5s linear;
+    
     &:hover {
-        background-color: $primary-color;
-        color: $primary-text-color;
+        border-color: $hover-color;
+        color: $hover-color;
+        transition: border-color 0.5s linear, color 0.5s linear;
     }
     &:disabled {
         background-color: $primary-dark-color;

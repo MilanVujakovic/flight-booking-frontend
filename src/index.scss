@@ -12,6 +12,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+input, select, textarea, button { 
+  font-family:inherit; 
+}
+
 #root {
   display: flex;
   min-height: 100vh;

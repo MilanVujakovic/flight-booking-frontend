@@ -1,77 +1,103 @@
 @import "../../assets/sass/colors.scss";
 
-$nav-bar-padding: 1.7rem;
-
-.header {
-    background-color: $primary-color;
-    box-shadow: 0 0.5vh 1vh 0 $shadow-color;
-}
+$navbar-padding: 1.7rem 2rem;
+$navbar-icon-padding: 0 1rem;
+$dropdown-item-padding: 1.7rem 3rem;
 
 .navbar {
     width: 80%;
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: stretch;
-    margin-left: auto;
-    margin-top: auto;
+    margin: auto;
+    margin-right: 2rem;
     margin-bottom: 0;
-    list-style: none;
     overflow: hidden;
+
+    color: $primary-color;
+    li {
+        display: flex;
+        align-items: stretch;
+    }
+    button {
+        border: none;
+        background-color: inherit;
+        color: inherit;
+        width: 100%;
+        cursor: pointer;
+        &:hover {
+            color: $hover-color;
+        }
+    }
 }
 
-.navbar li {
-    box-shadow: 0;
-    transition: box-shadow 0.5s;
-}
-
-.navbar li a {
-    padding: $nav-bar-padding;
-    text-align: center;
-    text-decoration: none;
-    font-weight: 500;
-    color: $primary-text-color;
-    display: block;
-}
-
-%navbar-text-icon {
+.navbar-left {
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-}
-
-.navbar-text-icon-right {
-    @extend %navbar-text-icon;
-    div {
-        margin-right: 1rem;
-    }
-}
-
-.navbar-text-icon-left {
-    @extend %navbar-text-icon;
-    div {
-        margin-left: 1rem;
-    }
-}
-
-.navbar-main-link:hover {
-    a {
-        color: $primary-light-color;
-    }
+    flex: 1;
 }
 
 .navbar-right {
     display: flex;
-    margin-left: 50vw;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
 }
 
+.navbar-link {
+    padding: $navbar-padding;
+    display: flex;
+    align-items: center;
 
-li:last-child {
-    margin-right: 4rem;
+    @extend %text-style;
+
+    &:hover {
+        color: $hover-color;
+    }
+}
+
+.navbar-icon {
+    padding: $navbar-icon-padding;
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
 }
 
 .sign-up-link {
+    @extend .navbar-link;
     background-color: $primary-dark-color;
+    color: $secondary-color;
     &:hover {
-        color: $primary-light-color;
+        color: $hover-color;
     }
+}
+
+%text-style {
+    font-size: 1.6rem;
+    text-align: center;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+// --- User dropdown menu ---
+.dropdown {
+    position: absolute;
+    top: 5rem;
+    transform: translateX(-55%);
+    border: 0.1rem solid $hover-color;
+    border-radius: 2%;
+    background-color: $secondary-color;
+}
+
+.dropdown-menu-item {
+    display: flex;
+    width: 10rem;
+    white-space: nowrap;
+    justify-content: center;
+    padding: $dropdown-item-padding;
+    @extend %text-style;
 }
 
 @media only screen and (max-width: 600px) {

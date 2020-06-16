@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import Login from './Login';
+import propTypes from 'prop-types';
 
-export default class LoginContainer extends Component {
+// Redux
+import { connect } from 'react-redux';
+import { loginUser } from '../../../redux/actions/userActions';
+
+class LoginContainer extends Component {
 
     constructor() {
         super();
@@ -11,21 +16,50 @@ export default class LoginContainer extends Component {
         };
     }
 
-    handleSubmit = (e) => {
-        alert("submit");
+    handleLogin = (event) => {
+        event.preventDefault();
+
+        const { email, password } = this.state;
+        const user = {
+            email,
+            password
+        }
+
+        const { history } = this.props;
+        this.props.loginUser(user, history);
     }
 
-    handleChange = (e) => {
+    handleChange = (event) => {
+        event.preventDefault();
         this.setState({
-            [e.target.id]: e.target.value
+            [event.target.id]: event.target.value
         });
+    }
+
+    componentDidMount() {
+        document.getElementById("email").focus();
     }
 
     render() {
         return (
-            <Login handleChange={this.handleChange} handleSubmit={this.handleSubmit}>
+            <Login onChange={this.handleChange} onLogin={this.handleLogin} errors={ this.props.user.errors }>
                 
             </Login>
         )
     }
 }
+
+LoginContainer.propTypes = {
+    loginUser: propTypes.func.isRequired,
+    user: propTypes.object.isRequired
+};
+
+const mapsStateToProps = (state) => ({
+    user: state.user
+});
+
+const mapActionsToProps = {
+    loginUser
+}
+
+export default connect(mapsStateToProps, mapActionsToProps)(LoginContainer)

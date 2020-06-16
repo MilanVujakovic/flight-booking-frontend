@@ -1,1 +1,16 @@
+@import "../../assets/sass/colors";
 
+a, u {
+    text-decoration: none;
+    color: $primary-color;
+    &:hover {
+        color: $hover-color;
+    }
+}
+ul {
+    list-style: none;
+}
+
+button {
+    outline: none;
+}

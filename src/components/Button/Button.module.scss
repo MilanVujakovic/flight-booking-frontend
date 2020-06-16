@@ -28,6 +28,9 @@ $padding-standard: 1.5rem 3rem;
         background-color: $primary-light-color;
         color: $primary-text-color;
     }
+    &:disabled {
+        background-color: $primary-dark-color;
+    }
 }
 
 .secondary-button {
@@ -58,6 +61,9 @@ $padding-standard: 1.5rem 3rem;
     &:hover {
         background-color: $primary-color;
         color: $primary-text-color;
+    }
+    &:disabled {
+        background-color: $primary-dark-color;
     }
 }
 

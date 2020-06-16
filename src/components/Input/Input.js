@@ -23,12 +23,13 @@ Input.propTypes = {
   name: propTypes.string.isRequired,
   type: propTypes.string.isRequired,
   id: propTypes.string.isRequired,
-  error: propTypes.string.isRequired,
+  error: propTypes.string,
   maxLength: propTypes.string,
   required: propTypes.string.isRequired
 }
 
 Input.defaultProps = {
+  error: '',
   maxLength: '64'
 }
 

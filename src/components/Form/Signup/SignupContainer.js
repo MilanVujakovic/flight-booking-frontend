@@ -20,24 +20,24 @@ export default class SignupContainer extends Component {
     }
 
     handleForward = () => {
-        this.setState((state) => {
+        this.setState(state => {
             return {step: state.step + 1};
         });
     }
 
     handleBack = () => {
-        this.setState((state) => {
+        this.setState(state => {
             return {step: state.step - 1};
         });
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = (event) => {
         alert("submit");
     }
 
-    handleChange = (e) => {
+    handleChange = (event) => {
         this.setState({
-            [e.target.id]: e.target.value
+            [event.target.id]: event.target.value
         });
     }
 

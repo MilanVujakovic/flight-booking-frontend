@@ -1,9 +1,6 @@
 // User reducer types
-export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
-export const SET_UNAUTHENTICATED = 'SET_UNAUTHENTICATED';
-export const SET_USER = 'SET_USER';
-// UI reducer types
-export const SET_ERRORS = 'SET_ERRORS';
-export const LOADING_UI = 'LOADING_UI';
-export const CLEAR_ERRORS = 'CLEAR_ERRORS';
-// Data reducer types
+export const LOGIN_USER_REQUEST = 'LOGIN_USER_REQUEST';
+export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
+export const LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE';
+export const LOGOUT_USER = 'LOGOUT_USER';
+export const SET_USER_DATA = 'SET_USER_DATA';

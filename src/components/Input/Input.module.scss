@@ -30,7 +30,7 @@ input[type=number] {
     &:focus {
         background-color: $hover-color;
         caret-color: $primary-color;
-        color: $primary-color;
+        color: $text-color;
     }
 }
 

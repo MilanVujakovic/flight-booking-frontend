@@ -1,29 +1,32 @@
 import React, { Component } from 'react'
 import Login from './Login';
+import propTypes from 'prop-types';
 
-// Validation
-import { validateEmail, validatePassword } from '../../../utils/FormValidation';
+// Redux
+import { connect } from 'react-redux';
+import { loginUser } from '../../../redux/actions/userActions';
 
-export default class LoginContainer extends Component {
+class LoginContainer extends Component {
 
     constructor() {
         super();
         this.state = {
             email: '',
-            password: '',
-            errors: {
-                email: '',
-                password: ''
-            }
+            password: ''
         };
     }
 
-    handleSubmit = (event) => {
+    handleLogin = (event) => {
         event.preventDefault();
 
-        const emailError = validateEmail('Email', this.state.email);
-        const passwordError = validatePassword('Password', this.state.password);
-        this.setState({errors: {email: emailError, password: passwordError}});
+        const { email, password } = this.state;
+        const user = {
+            email,
+            password
+        }
+
+        const { history } = this.props;
+        this.props.loginUser(user, history);
     }
 
     handleChange = (event) => {
@@ -39,9 +42,24 @@ export default class LoginContainer extends Component {
 
     render() {
         return (
-            <Login handleChange={this.handleChange} handleSubmit={this.handleSubmit} errors={this.state.errors}>
+            <Login onChange={this.handleChange} onLogin={this.handleLogin} errors={ this.props.user.errors }>
                 
             </Login>
         )
     }
 }
+
+LoginContainer.propTypes = {
+    loginUser: propTypes.func.isRequired,
+    user: propTypes.object.isRequired
+};
+
+const mapsStateToProps = (state) => ({
+    user: state.user
+});
+
+const mapActionsToProps = {
+    loginUser
+}
+
+export default connect(mapsStateToProps, mapActionsToProps)(LoginContainer)

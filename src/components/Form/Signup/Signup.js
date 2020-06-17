@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Signup.module.scss';
 import Input from '../../Input';
 import Button from '../../Button';
+import ProgressLine, { ProgressLineItem } from './ProgressLine';
 
 function Signup(props) {
 
@@ -26,6 +27,11 @@ function Signup(props) {
 
     return (
         <div className={styles["form-page"]}>
+            <ProgressLine>
+                <ProgressLineItem title="Account Info" advance={ stepCount > 0 && true } />
+                <ProgressLineItem title="Personal Info" advance={ stepCount > 1 && true } />
+                <ProgressLineItem title="Contact Info" advance={ stepCount > 2 && true } />
+            </ProgressLine>
             { step }
         </div>
     );
@@ -35,7 +41,8 @@ const AccountInfo = props => {
     const { onInputChange, onForward } = props;
 
     return (
-        <FormStep forwardText="Personal →" onForward={ onForward }>
+        <FormStep forwardText="Personal" onForward={ onForward }>
+            <span className={ styles.stepTitle }>Account Information</span>
             <Input 
                 label="Email" 
                 name="email" 
@@ -50,7 +57,7 @@ const AccountInfo = props => {
                 name="password" 
                 type="password" 
                 id="password" 
-                value={props.password} 
+                value={ props.password } 
                 onChange={ onInputChange }
                 required 
             />
@@ -59,7 +66,7 @@ const AccountInfo = props => {
                 name="verifyPassword" 
                 type="password" 
                 id="passwordVerify" 
-                value={props.passwordVerify} 
+                value={ props.passwordVerify } 
                 onChange={ onInputChange } 
                 required 
             />
@@ -70,7 +77,8 @@ const AccountInfo = props => {
 const PersonalInfo = props => {
     const { onBack, onForward, onInputChange } = props;
     return (
-        <FormStep backText="← Account" onBack={ onBack } forwardText="Contact →" onForward={ onForward }>
+        <FormStep backText="Account" onBack={ onBack } forwardText="Contact" onForward={ onForward }>
+            <span className={ styles.stepTitle }>Personal Information</span>
             <Input 
                 label="Username" 
                 name="username" 
@@ -105,7 +113,8 @@ const PersonalInfo = props => {
 const ContactInfo = props => {
     const { onBack, onSignup, onInputChange } = props;
     return (
-        <FormStep backText="← Contact" onBack={ onBack } forwardText="Sign up" onForward={ onSignup }>
+        <FormStep backText="Contact" onBack={ onBack } forwardText="Sign up" onForward={ onSignup }>
+            <span className={ styles.stepTitle }>Contact Information</span>
             <Input 
                 label="Address" 
                 name="address" 
@@ -159,12 +168,12 @@ const FormStep = props => {
             <div className={styles["progress-bar"]}>
                 {
                     hasBack && 
-                    <Button type="primary-outlined-button" onClick={ onBack }>
+                    <Button type="primaryOutlinedButton" onClick={ onBack }>
                         { backText }
                     </Button>
                 }
                 
-                <Button type="primary-button" onClick={ onForward }>
+                <Button type="primaryButton" size={ hasBack || 'wide'} onClick={ onForward }>
                     { forwardText }
                 </Button>
             </div>

@@ -23,6 +23,12 @@ h2 {
     background-color: $form-background-color;
 }
 
+.stepTitle {
+    width: inherit;
+    font-size: 2rem;
+    text-align: center;
+}
+
 .form {
     width: 20%;
     display: flex;
@@ -42,7 +48,7 @@ h2 {
     width: 100%;
     padding: inherit;
     display: flex;
-    align-items: flex-start;
+    
     justify-content: space-between;
 }
 

@@ -1,0 +1,91 @@
+@import '../../../../assets/sass/colors';
+
+$circle-size: 3rem;
+$line-height: 0.7rem;
+$li-width: 15vw;
+
+.progressLine {
+    white-space: nowrap;
+    overflow: hidden;
+    margin-bottom: 2vh;
+    ol {
+        counter-reset: step;
+        list-style: none;
+        padding: 0;
+        
+        li {
+            position: relative;
+            float: left;
+            width: $li-width;
+            list-style-type: none;
+            text-align: center;
+
+            span {
+                color: $progress-text-color;
+                letter-spacing: 1px;
+                transition: all 1s linear;
+            }
+
+            &::before {
+                counter-increment: step;
+                content: counter(step);
+                position: relative;
+                display: block;
+                border-radius: 50%;
+                width: $circle-size;
+                height: $circle-size;
+                line-height: $circle-size;
+                text-align: center;
+                margin: 0 auto 1rem auto;
+
+                background-color: $secondary-color;
+                color: $primary-color;
+                z-index: 1;
+                box-shadow: 0 0.3vh 2vh 0 $shadow-color;
+                transition: all 1s linear;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: $line-height;
+                top: ($circle-size - $line-height) / 2;
+                left: -50%;
+                box-shadow: 0 0.3vh 2vh 0 $shadow-color;
+                background: linear-gradient(to right, $progress-line-color 50%, $secondary-color 50%);
+                background-size: 200% 100%;
+                background-position-x: right;
+                z-index: 0;
+                transition: all 1s linear;
+            }
+
+            &:first-child::after {
+                content: none;
+            }
+            &.advance {
+                span {
+                    color: $progress-line-color;
+                    
+                }
+                &::before {
+                    background-color: $progress-line-color;
+                    color: $primary-text-color;
+                }
+                &::after {
+                    background-position-x: left;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-aspect-ratio: 3/4) {
+    .progressLine {
+        ol {
+            li {
+                width: 30vw;
+            }
+        }
+    }
+}

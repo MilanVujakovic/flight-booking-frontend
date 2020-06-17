@@ -2,26 +2,27 @@
 
 $border-outlined: 0.2rem;
 
-$padding-standard: 1.5rem 2rem;
-$padding-outlined: (1.5 - $border-outlined) 2rem;
+$padding-standard: 1.2rem 2rem;
+$padding-outlined: (1.2 - $border-outlined) 2rem;
 
 %button {
-    width: inherit;
-    height: inherit;
     cursor: pointer;
     border-style: none;
     white-space: nowrap;
     font-family: inherit;
-    font-size: 1.6rem;
+    font-size: 1em;
     font-weight: 500;
-    text-transform: uppercase;
     margin: auto;
     outline: none;
 }
 
+.wide {
+    width: inherit;
+}
+
 /* ----------- Default button ---------- */
 
-.primary-button {
+.primaryButton {
     @extend %button;
     padding: $padding-standard;
 
@@ -37,7 +38,7 @@ $padding-outlined: (1.5 - $border-outlined) 2rem;
     }
 }
 
-.secondary-button {
+.secondaryButton {
     @extend %button;
     padding: $padding-standard;
 
@@ -53,26 +54,27 @@ $padding-outlined: (1.5 - $border-outlined) 2rem;
 
 /* ------------ Outlined button ------------*/
 
-.primary-outlined-button {
+.primaryOutlinedButton {
     @extend %button;
     padding: $padding-outlined;
     border: $border-outlined solid $primary-color;
 
     background-color: inherit;
     color: $primary-color;
-    transition: border-color 0.5s linear, color 0.5s linear;
+    transition: border-color 0.5s linear, color 0.5s linear, background-color 0.5s linear;
     
     &:hover {
-        border-color: $hover-color;
-        color: $hover-color;
-        transition: border-color 0.5s linear, color 0.5s linear;
+        border-color: $primary-color;
+        background-color: $primary-color;
+        color: $primary-text-color;
+        transition: border-color 0.5s linear, color 0.5s linear, background-color 0.5s linear;
     }
     &:disabled {
         background-color: $primary-dark-color;
     }
 }
 
-.secondary-outlined-button {
+.secondaryOutlinedButton {
     @extend %button;
     padding: $padding-standard;
     border: 0.2rem solid $secondary-color;

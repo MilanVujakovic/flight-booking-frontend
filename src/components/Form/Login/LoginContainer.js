@@ -5,6 +5,7 @@ import propTypes from 'prop-types';
 // Redux
 import { connect } from 'react-redux';
 import { loginUser } from '../../../redux/actions/userActions';
+import { clearErrors } from '../../../redux/actions/uiActions';
 
 class LoginContainer extends Component {
 
@@ -40,9 +41,13 @@ class LoginContainer extends Component {
         document.getElementById("email").focus();
     }
 
+    componentWillUnmount() {
+        this.props.clearErrors();
+    }
+
     render() {
         return (
-            <Login onChange={this.handleChange} onLogin={this.handleLogin} errors={ this.props.user.errors }>
+            <Login onChange={this.handleChange} onLogin={this.handleLogin} errors={ this.props.UI.errors }>
                 
             </Login>
         )
@@ -51,15 +56,20 @@ class LoginContainer extends Component {
 
 LoginContainer.propTypes = {
     loginUser: propTypes.func.isRequired,
-    user: propTypes.object.isRequired
+    clearErrors: propTypes.func.isRequired,
+    user: propTypes.object.isRequired,
+    UI: propTypes.object.isRequired,
+    history: propTypes.object.isRequired
 };
 
-const mapsStateToProps = (state) => ({
-    user: state.user
+const mapStateToProps = state => ({
+    user: state.user,
+    UI: state.UI
 });
 
 const mapActionsToProps = {
-    loginUser
+    loginUser,
+    clearErrors
 }
 
-export default connect(mapsStateToProps, mapActionsToProps)(LoginContainer)
+export default connect(mapStateToProps, mapActionsToProps)(LoginContainer)

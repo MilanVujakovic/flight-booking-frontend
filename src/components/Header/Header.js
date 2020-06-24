@@ -50,7 +50,7 @@ const guestMenu = () => {
     return (
         <div className={styles['navbar-right']}>
             <NavbarItem to='/login' className={styles['navbar-link']}>Log in</NavbarItem>
-            <NavbarItem to='/sign-up' className={styles['sign-up-link']}>Sign up</NavbarItem>
+            <NavbarItem to='/signup' className={styles['sign-up-link']}>Sign up</NavbarItem>
         </div>
     );
 };

@@ -5,7 +5,7 @@ const Button = props => {
     const { type, size } = props;
     return (
         <button 
-            className={`${props.type === undefined ? styles.secondaryButton : styles[type]} ${ size === 'wide' && styles.wide}`} 
+            className={`${props.type === undefined ? styles.secondaryButton : styles[type]} ${ size === 'wide' ? styles.wide : ''}`} 
             onClick={props.onClick}
             disabled={props.disabled}
             type="button"

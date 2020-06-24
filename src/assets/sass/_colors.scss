@@ -8,7 +8,7 @@ $secondary-dark-color: #f1f1f1;
 $secondary-darker-color: #d1d1d1;
 $secondary-text-color: #2e94b9;
 
-$tertiary-color: #beefff;
+$tertiary-color: #2bc34f;
 
 
 $highlight-color: rgba(244,67,54, 0.8);
@@ -19,8 +19,8 @@ $text-color: $primary-dark-color;
 $link-color: $primary-color;
 $font-color: #6d6d6d;
 
-$hover-color: $tertiary-color;
+$hover-color: #beefff;
 
 $form-background-color: #f5f4f4;
-$progress-line-color: #2bc34f;
+$progress-line-color: $primary-dark-color;
 $progress-text-color: #c3c3c3;

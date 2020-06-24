@@ -1,13 +1,15 @@
 @import "../../assets/sass/colors.scss";
+@import "../../assets/sass/variables";
 
 $border-outlined: 0.2rem;
 
-$padding-standard: 1.2rem 2rem;
-$padding-outlined: (1.2 - $border-outlined) 2rem;
+$padding-standard: 1.2rem 3rem;
+$padding-outlined: (1.2 - $border-outlined) 3rem;
 
 %button {
     cursor: pointer;
     border-style: none;
+    border-radius: $border-radius;
     white-space: nowrap;
     font-family: inherit;
     font-size: 1em;

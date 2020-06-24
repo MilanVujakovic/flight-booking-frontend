@@ -1,56 +1,71 @@
 import React from 'react';
 import styles from './Login.module.scss';
-import Input from '../../Input';
+import { TextField } from '@material-ui/core';
 import Button from '../../Button';
 import { Link } from 'react-router-dom';
+import propTypes from 'prop-types';
 
 const Login = props => {
-    const  { onChange, errors, onLogin, isAuthenticating } = props;
-    const { email, password } = errors;
+    const  { email, password, onChange, errors, onLogin, isLoading } = props;
     return (
         <div className={styles["form-page"]}>
             <form method='POST' className={styles["form"]}>
                 
                 <div className={styles["step-page"]}>
-                        <Input
+                        <TextField
                             label="Email"
                             name="email"
                             type="email" 
-                            id="email" 
-                            onChange={onChange}
-                            error={email} 
+                            id="email"
+                            value={ email }
+                            onChange={ onChange }
+                            error={ errors.email ? true : false }
+                            helperText={ errors.email }
+                            inputProps={{ maxLength: 64 }}
+                            fullWidth 
                             required
                         />
-                        <Input 
+                        <TextField 
                             label="Password"
                             name="password" 
                             type="password" 
-                            id="password" 
-                            onChange={onChange} 
-                            error={password}
+                            id="password"
+                            value={ password }
+                            onChange={ onChange } 
+                            error={ errors.password ? true : false }
+                            helperText={ errors.password }
+                            inputProps={{ maxLength: 64 }}
+                            fullWidth
                             required
                         />
-                        <div className={styles["in-line"]}>
+                        <div className={styles.rememberMe}>
                             <div>
                                 <input type="checkbox" id="rememberMe" name="rememberMe"/>
                                 <label htmlFor="rememberMe">Remember me</label>
                             </div>
                             <a href="/">Forgot password?</a>
                         </div>
+
+                    <div className={styles["progress-bar"]}>
+                        <Button type="primaryButton" size="wide" onClick={ onLogin } disabled={ isLoading }>Login</Button>
+                    </div>
                 </div>
 
-                <div className={styles["progress-bar"]}>
-                    <Button type="primaryButton" size="wide" onClick={ onLogin } disabled={isAuthenticating}>Login</Button>
-                </div>
-
-                <div className={styles["divider"]}/>
-                <div className={styles["in-line"]}>
+                <div className={styles.inLine}>
                     <span>Don't have an account?</span>
-                    <Link to="/sign-up">Sign up</Link>
+                    <Link to="/signup">Sign up</Link>
                 </div>
             </form>
         </div>
     );
 };
+Login.propTypes = {
+    email: propTypes.string.isRequired,
+    password: propTypes.string.isRequired,
+    onChange: propTypes.func.isRequired,
+    onLogin: propTypes.func.isRequired,
+    isLoading: propTypes.bool.isRequired,
+    errors: propTypes.object
+}
 
 export default Login;

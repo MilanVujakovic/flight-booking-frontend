@@ -1,0 +1,116 @@
+@import '../../../../assets/sass/colors';
+
+$circle-size: 3rem;
+$line-height: 0.7rem;
+$li-width: 15vw;
+
+$transition-duration: 0.5s;
+
+@mixin progressMargin($margin) {
+    margin-bottom: $margin;
+    margin-top: $margin;
+}
+
+.progressLine {
+    white-space: nowrap;
+    overflow: hidden;
+    @include progressMargin(5rem);
+    
+    ol {
+        counter-reset: step;
+        list-style: none;
+        padding: 0;
+        
+        li {
+            position: relative;
+            float: left;
+            width: $li-width;
+            list-style-type: none;
+            text-align: center;
+
+            span {
+                color: $progress-text-color;
+                letter-spacing: 1px;
+                transition: all $transition-duration linear;
+            }
+
+            &::before {
+                counter-increment: step;
+                content: counter(step);
+                position: relative;
+                display: block;
+                border-radius: 50%;
+                width: $circle-size;
+                height: $circle-size;
+                line-height: $circle-size;
+                text-align: center;
+                margin: 0 auto 1rem auto;
+
+                background-color: $secondary-color;
+                color: $progress-text-color;
+                z-index: 1;
+                transition: all $transition-duration linear;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: $line-height;
+                top: ($circle-size - $line-height) / 2;
+                left: -50%;
+                background: linear-gradient(to right, $progress-line-color 50%, $secondary-color 50%);
+                background-size: 200% 100%;
+                background-position-x: right;
+                z-index: 0;
+                transition: all $transition-duration linear;
+            }
+
+            &:first-child::after {
+                content: none;
+            }
+            &.advance {
+                span {
+                    color: $progress-line-color;
+                    
+                }
+                &::before {
+                    background-color: $progress-line-color;
+                    color: $primary-text-color;
+                    transition-delay: $transition-duration;
+                }
+                &::after {
+                    background-position-x: left;
+                }
+            }
+            &.retreat {
+                span {
+                    color: $progress-text-color;
+                    
+                }
+                &::before {
+                    background-color: $secondary-color;
+                    color: $progress-text-color;
+                }
+                &::after {
+                    background-position-x: right;
+                    transition-delay: $transition-duration;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-aspect-ratio: 3/4) {
+    .progressLine {
+        @include progressMargin(1rem);
+        ol {
+            li {
+                width: 30vw;
+                span {
+                    display: none;
+                }
+            }
+        }
+    }
+}

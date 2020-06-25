@@ -1,26 +1,15 @@
 @import "../../assets/sass/colors.scss";
+@import "../../assets/sass/variables";
 
-h3 {
-    margin-right: auto;
-    font-weight: 500;
-    color: $primary-light-color;
-    border-bottom: 0.2vh solid $primary-light-color;
-    width: 100%;
+@mixin resizeForm($height, $width) {
+    flex: $height;
+    width: $width;
 }
-
 
 h2 {
     flex: 1;
     color: $primary-light-color;
     margin-bottom: 2vh;
-}
-
-.step-page {
-    flex: 15;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .form-page {
@@ -29,42 +18,103 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: $secondary-dark-color;
+    background-color: $form-background-color;
 }
 
-.form {
-    width: 20%;
-    align-self: center;
-
+.multiForm {
+    flex: 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: stretch;
+    justify-content: flex-start;
+}
 
-    margin: 2vh;
+.step-page {
+    flex: 5;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.stepTitle {
+    width: inherit;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.form {
+    @include resizeForm(0.5, 20%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: $border-radius;
     padding: 3vh 3vw;
-    box-shadow: 0 0.3vh 1vh 0 $shadow-color;
+    box-shadow: 0 0.3vh 2vh 0 $shadow-color;
     background-color: $secondary-color;
+    &.loginForm {
+        flex: 0.4;
+    }
+}
+
+@keyframes heightResize {
+    0% {
+        max-height: 0%;
+    }
+
+    50% {
+        max-height: 50%;
+    }
+
+    100% {
+        max-height: 100%;
+    }
 }
 
 .progress-bar {
-    flex: 1;
-    
     width: 100%;
-    padding: inherit;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+
+    & > button {
+        margin: 0;
+    }
 }
 
-.in-line {
+.rememberMe {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-top: 3rem;
 }
 
-.divider {
+.inLine {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    height: 0.1rem;
-    background-color: $secondary-darker-color;
+}
+
+.dateOfBirthContainer {
+    width: 100%;
+}
+
+.dateOfBirth {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* @media only screen and (max-width: 1024px) {
+    .form {
+        width: 80%;
+    }
+} */
+
+@media only screen and (max-aspect-ratio: 3/4) {
+    .form {
+        @include resizeForm(0.7, 80%);
+    }
 }

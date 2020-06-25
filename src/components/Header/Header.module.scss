@@ -70,7 +70,8 @@ $dropdown-item-padding: 1.7rem 3rem;
     background-color: $primary-dark-color;
     color: $secondary-color;
     &:hover {
-        color: $hover-color;
+        background-color: $primary-color;
+        color: $secondary-color;
     }
 }
 
@@ -79,6 +80,7 @@ $dropdown-item-padding: 1.7rem 3rem;
     text-align: center;
     font-weight: 500;
     text-transform: uppercase;
+    letter-spacing: 0.1rem;
 }
 
 // --- User dropdown menu ---

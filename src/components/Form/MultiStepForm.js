@@ -22,7 +22,7 @@ const MultiStepForm = props => {
 };
 
 export const FormStep = props => {
-    const { backText, onBack, forwardText, onForward } = props;
+    const { backText, onBack, forwardText, onForward, disableOnForward } = props;
     const hasBack = backText ? true : false;
     return (
         <div className={styles["step-page"]}>
@@ -37,7 +37,7 @@ export const FormStep = props => {
                     </Button>
                 }
                 
-                <Button type="primaryButton" size={ hasBack || 'wide'} onClick={ onForward }>
+                <Button type="primaryButton" fullWidth={ !hasBack } onClick={ onForward } disabled={ disableOnForward }>
                     { forwardText }
                 </Button>
             </div>
@@ -55,7 +55,8 @@ FormStep.propTypes = {
     backText: propTypes.string,
     onBack: propTypes.func,
     forwardText: propTypes.string.isRequired,
-    onForward: propTypes.func.isRequired
+    onForward: propTypes.func.isRequired,
+    disableOnForward: propTypes.bool
 }
 
 export default MultiStepForm;

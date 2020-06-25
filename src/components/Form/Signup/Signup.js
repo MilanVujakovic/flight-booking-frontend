@@ -32,7 +32,6 @@ function Signup(props) {
 
 const AccountInfo = props => {
     const { onInputChange, onForward, email, password, errors } = props;
-
     return (
         <FormStep forwardText="Personal" onForward={ onForward }>
             <span className={ styles.stepTitle }>Account Information</span>
@@ -42,11 +41,12 @@ const AccountInfo = props => {
                 type="email" 
                 id="email" 
                 error={ errors.email ? true : false }
-                helperText={ errors.email }
+                helperText={ errors.email || '' }
                 value={ email } 
                 onChange={ onInputChange }
                 inputProps={{ maxLength: 64 }}
                 fullWidth
+                autoFocus
                 required
             />
             <TextField 
@@ -55,7 +55,7 @@ const AccountInfo = props => {
                 type="password" 
                 id="password" 
                 error={ errors.password ? true : false }
-                helperText={ errors.password }
+                helperText={ errors.password || '' }
                 value={ password } 
                 onChange={ onInputChange }
                 inputProps={{ maxLength: 64 }}
@@ -78,11 +78,12 @@ const PersonalInfo = props => {
                 type="text" 
                 id="username"
                 error={ errors.username ? true : false }
-                helperText={ errors.username } 
+                helperText={ errors.username || '' } 
                 value={username} 
                 onChange={ onInputChange }
                 inputProps={{ maxLength: 64 }}
                 fullWidth
+                autoFocus
                 required 
             />
             <TextField 
@@ -91,7 +92,7 @@ const PersonalInfo = props => {
                 type="text" 
                 id="fullName"
                 error={ errors.fullName ? true : false }
-                helperText={ errors.fullName }  
+                helperText={ errors.fullName || '' }  
                 value={fullName} 
                 onChange={ onInputChange }
                 inputProps={{ maxLength: 64 }}
@@ -106,7 +107,7 @@ const PersonalInfo = props => {
                         value = { dobDay === '' ? null : dobDay }
                         options={ dayOptions() }
                         style={{ flex: 0.4 }}
-                        renderInput={ (params) => <TextField {...params} error={ errors.dobDay ? true : false } helperText={ errors.dobDay }  label="Day" /> }
+                        renderInput={ (params) => <TextField {...params} error={ errors.dobDay ? true : false } helperText={ errors.dobDay || '' }  label="Day" /> }
                         onChange={ onAutocompleteChange }
                         disableClearable
                         autoHighlight
@@ -114,9 +115,9 @@ const PersonalInfo = props => {
                     <Autocomplete
                         id="dobMonth"
                         value={ dobMonth === '' ? null : dobMonth }
-                        options={ monthOptions }
+                        options={ monthOptions.map(option => option.title) }
                         style={{ flex: 0.7, marginLeft: '1rem' }}
-                        renderInput={ (params) => <TextField {...params} error={ errors.dobMonth ? true : false } helperText={ errors.dobMonth } label="Month" /> }
+                        renderInput={ (params) => <TextField {...params} error={ errors.dobMonth ? true : false } helperText={ errors.dobMonth || '' } label="Month" /> }
                         onChange={ onAutocompleteChange }
                         disableClearable
                         autoHighlight
@@ -126,7 +127,7 @@ const PersonalInfo = props => {
                         value={ dobYear === '' ? null : dobYear }
                         options={ yearOptions() }
                         style={{ flex: 0.5, marginLeft: '1rem' }}
-                        renderInput={ (params) => <TextField {...params} error={ errors.dobYear ? true : false } helperText={ errors.dobYear } label="Year" /> }
+                        renderInput={ (params) => <TextField {...params} error={ errors.dobYear ? true : false } helperText={ errors.dobYear || '' } label="Year" /> }
                         onChange={ onAutocompleteChange }
                         disableClearable
                         autoHighlight
@@ -139,9 +140,9 @@ const PersonalInfo = props => {
 };
 
 const ContactInfo = props => {
-    const { onBack, onForward, onInputChange, onAutocompleteChange, streetAddress, city, postalCode, country, phone, errors } = props;
+    const { onBack, onForward, onInputChange, onAutocompleteChange, streetAddress, city, postalCode, country, phone, errors, isLoading } = props;
     return (
-        <FormStep backText="Contact" onBack={ onBack } forwardText="Sign up" onForward={ onForward }>
+        <FormStep backText="Contact" onBack={ onBack } forwardText="Sign up" onForward={ onForward } disableOnForward = { isLoading }>
             <span className={ styles.stepTitle }>Contact Information</span>
             <TextField 
                 label="Street Address" 
@@ -149,40 +150,39 @@ const ContactInfo = props => {
                 type="text" 
                 id="streetAddress"
                 error={ errors.streetAddress ? true : false }
-                helperText={ errors.streetAddress }  
+                helperText={ errors.streetAddress || '' }  
                 value={ streetAddress } 
                 onChange={ onInputChange }
                 inputProps={{ maxLength: 64 }}
                 fullWidth
+                autoFocus
                 required 
             />
             
             <div style={{ display: 'flex' }}>
-                <TextField 
+                <TextField
                     label="City" 
                     name="city" 
                     type="text" 
                     id="city"
                     error={ errors.city ? true : false }
-                    helperText={ errors.city }  
+                    helperText={ errors.city || '' }  
                     value={ city } 
                     onChange={ onInputChange }
                     inputProps={{ maxLength: 64 }}
-                    fullWidth
                     required 
                 />
                 <TextField 
-                    style={{ marginLeft: '1rem', whiteSpace: 'nowrap' }}
-                    label="Postal / Zip code" 
+                    style={{ marginLeft: '1rem' }}
+                    label="Postal Code" 
                     name="postalCode" 
                     type="text" 
                     id="postalCode"
                     error={ errors.postalCode ? true : false }
-                    helperText={ errors.postalCode }  
+                    helperText={ errors.postalCode || 'Zip Code' }  
                     value={ postalCode } 
                     onChange={ onInputChange }
                     inputProps={{ maxLength: 16 }}
-                    fullWidth
                     required 
                 />
             </div>
@@ -192,10 +192,10 @@ const ContactInfo = props => {
                 value={ country === '' ? null : country } 
                 onChange={ onAutocompleteChange }
                 options={ countryOptions.map(option => option.label) }
-                renderInput={ (params) => <TextField {...params} error={ errors.country ? true : false } helperText={ errors.country } label="Country" required/> }
-                fullWidth
+                renderInput={ (params) => <TextField {...params} error={ errors.country ? true : false } helperText={ errors.country || '' } label="Country" required/> }
                 autoHighlight 
                 disableClearable
+                fullWidth
             />
             <TextField 
                 label="Phone Number" 
@@ -203,7 +203,7 @@ const ContactInfo = props => {
                 type="tel" 
                 id="phone"
                 error={ errors.phone ? true : false }
-                helperText={ errors.phone }  
+                helperText={ errors.phone || '' }  
                 value={phone} 
                 onChange={ onInputChange }
                 inputProps={{ maxLength: 64 }}
@@ -250,6 +250,7 @@ ContactInfo.propTypes = {
     postalCode: propTypes.string,
     country: propTypes.string,
     phone: propTypes.string,
+    isLoading: propTypes.bool.isRequired,
     errors: propTypes.object
 }
 

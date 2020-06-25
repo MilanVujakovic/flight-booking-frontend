@@ -4,38 +4,50 @@ const validEmailRegex = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
 export const validateForm = (validationRequirements, data) => {
     let errors = {};
     
-    for( let [property, value] of Object.entries(data)) {
-        errors = {
-             ...errors,
-              [property]: ''
-        }
-
-        const requirements = validationRequirements[property];
-        if(!requirements) continue;
-
-        if(requirements.isRequired) {
-            const { isValid, error } = validateIsRequired(value, property);
-            if(!isValid) {
-                errors[property] = error;
-                continue;
+   Object.keys(data).forEach((property) => {
+        const value = data[property];
+        
+        if(typeof value == 'object' && value !== null) {
+            const result = validateForm(validationRequirements, value);
+            if(!result.isValid) {
+                errors = {
+                    ...errors,
+                    ...result.errors
+                }
             }
-        } 
-        if(requirements.minLength) {
-            const { isValid, error } = validateMinLength(value, property, requirements.minLength);
-            if(!isValid) {
-                errors[property] = error;
-                continue;
+        } else {
+            errors = {
+                ...errors,
+                [property]: ''
             }
-        }
-        if(requirements.isEmailValid) {
-            const { isValid, error } = validateEmail(value);
-            if(!isValid) {
-                errors[property] = error;
-                continue;
-            }
-        }
-    };
 
+            const requirements = validationRequirements[property];
+            if(!requirements) return;
+
+            if(requirements.isRequired) {
+                const { isValid, error } = validateIsRequired(value, property);
+                if(!isValid) {
+                    errors[property] = error;
+                    return;
+                }
+            } 
+            if(requirements.minLength) {
+                const { isValid, error } = validateMinLength(value, property, requirements.minLength);
+                if(!isValid) {
+                    errors[property] = error;
+                    return;
+                }
+            }
+            if(requirements.isEmailValid) {
+                const { isValid, error } = validateEmail(value);
+                if(!isValid) {
+                    errors[property] = error;
+                    return;
+                }
+            }
+        }
+    });
+    
     return {
         isValid: noErrors(errors),
         errors: errors
@@ -136,7 +148,7 @@ export const validateSignupForm = (stepData, step) => {
                 country: {
                     isRequired: true,
                 },
-                phoneNumber: {
+                phone: {
                     isRequired: true,
                 }
             };

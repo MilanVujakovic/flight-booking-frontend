@@ -37,17 +37,14 @@ class LoginContainer extends Component {
         });
     }
 
-    componentDidMount() {
-        document.getElementById("email").focus();
-    }
-
     componentWillUnmount() {
         this.props.clearErrors();
     }
 
     render() {
+        const { errors, isLoading } = this.props.UI;
         return (
-            <Login onChange={this.handleChange} onLogin={this.handleLogin} errors={ this.props.UI.errors }>
+            <Login { ...this.state } onChange={this.handleChange} onLogin={this.handleLogin} errors={ errors } isLoading={ isLoading } >
                 
             </Login>
         )

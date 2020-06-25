@@ -65,6 +65,7 @@ export const checkUser = () => dispatch => {
 };
 
 export const signupUser = (userData, history) => async dispatch => {
+    dispatch({ type: LOADING_UI });
     try {
         const res = await axios.post('/user/signup', userData);
         setAuthorizationHeader(res.data.token);

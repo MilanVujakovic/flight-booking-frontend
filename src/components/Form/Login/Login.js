@@ -9,7 +9,7 @@ const Login = props => {
     const  { email, password, onChange, errors, onLogin, isLoading } = props;
     return (
         <div className={styles["form-page"]}>
-            <form method='POST' className={styles["form"]}>
+            <form method='POST' className={`${ styles.form } ${ styles.loginForm }`}>
                 
                 <div className={styles["step-page"]}>
                         <TextField
@@ -20,9 +20,10 @@ const Login = props => {
                             value={ email }
                             onChange={ onChange }
                             error={ errors.email ? true : false }
-                            helperText={ errors.email }
+                            helperText={ errors.email || '' }
                             inputProps={{ maxLength: 64 }}
-                            fullWidth 
+                            fullWidth
+                            autoFocus 
                             required
                         />
                         <TextField 
@@ -33,7 +34,7 @@ const Login = props => {
                             value={ password }
                             onChange={ onChange } 
                             error={ errors.password ? true : false }
-                            helperText={ errors.password }
+                            helperText={ errors.password || '' }
                             inputProps={{ maxLength: 64 }}
                             fullWidth
                             required
@@ -47,7 +48,7 @@ const Login = props => {
                         </div>
 
                     <div className={styles["progress-bar"]}>
-                        <Button type="primaryButton" size="wide" onClick={ onLogin } disabled={ isLoading }>Login</Button>
+                        <Button type="primaryButton" fullWidth onClick={ onLogin } disabled={ isLoading }>Login</Button>
                     </div>
                 </div>
 

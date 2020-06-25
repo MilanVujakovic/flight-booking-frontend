@@ -40,6 +40,7 @@ class HeaderContainer extends Component {
 
     handleLogout = () => {
         this.props.logoutUser();
+        this.setState({ isOpen: false });
     }
 
     render() {

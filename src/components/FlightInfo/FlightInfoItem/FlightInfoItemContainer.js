@@ -5,15 +5,15 @@ export class FlightInfoItemContainer extends Component {
 
     constructor() {
         super();
-        this.state = { buttonType: "primary-button"}
+        this.state = { buttonType: "primaryButton"}
     }
 
     mouseEnter = () => {
-        this.setState({ buttonType: "primary-button"});
+        this.setState({ buttonType: "primaryButton"});
     }
 
     mouseLeave = () => {
-        this.setState({buttonType: "primary-button"});
+        this.setState({buttonType: "primaryButton"});
     }
 
     render() {

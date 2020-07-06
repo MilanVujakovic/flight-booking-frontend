@@ -14,17 +14,22 @@ $padding-outlined: (1.2 - $border-outlined) 3rem;
     font-family: inherit;
     font-size: 1em;
     font-weight: 500;
-    margin: auto;
+    text-align: center;
     outline: none;
+
+    &.fullWidth {
+        width: 100%;
+    }
+    &.wide {
+        width: 50%;
+    }
 }
 
-.fullWidth {
-    width: 100%;
-}
+
 
 /* ----------- Default button ---------- */
 
-.primaryButton {
+.primary {
     @extend %button;
     padding: $padding-standard;
 
@@ -40,23 +45,23 @@ $padding-outlined: (1.2 - $border-outlined) 3rem;
     }
 }
 
-.secondaryButton {
+.secondary {
     @extend %button;
     padding: $padding-standard;
 
-    background-color: $tertiary-color;
-    color: $primary-color;
+    background-color: $secondary-color;
+    color: $secondary-text-color;
 
     &:hover {
-        background-color: $primary-color;
-        color: $secondary-color;
+        background-color: $secondary-dark-color;
+        color: $secondary-text-color;
     }
 }
 
 
 /* ------------ Outlined button ------------*/
 
-.primaryOutlinedButton {
+.primaryOutlined {
     @extend %button;
     padding: $padding-outlined;
     border: $border-outlined solid $primary-color;
@@ -76,7 +81,7 @@ $padding-outlined: (1.2 - $border-outlined) 3rem;
     }
 }
 
-.secondaryOutlinedButton {
+.secondaryOutlined {
     @extend %button;
     padding: $padding-standard;
     border: 0.2rem solid $secondary-color;
@@ -90,4 +95,17 @@ $padding-outlined: (1.2 - $border-outlined) 3rem;
     }
 }
 
+
+.primaryRounded {
+    @extend %button;
+    width: 4rem;
+    height: 4rem;
+    line-height: 50%;
+    border-radius: 50%;
+    background-color: $primary-color;
+    color: $secondary-color;
+    &:hover {
+        background-color: $primary-light-color;
+    }
+}
 

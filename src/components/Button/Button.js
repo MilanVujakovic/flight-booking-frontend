@@ -3,22 +3,23 @@ import styles from './Button.module.scss';
 import propTypes from 'prop-types';
 
 const Button = props => {
-    const { type, fullWidth, onClick, disabled } = props;
+    const { variant, fullWidth, wide, onClick, disabled } = props;
     return (
         <button 
-            className={`${type === undefined ? styles.secondaryButton : styles[type]} ${ fullWidth ? styles.fullWidth : '' }`} 
-            onClick={onClick}
-            disabled={disabled}
+            className={ `${variant === undefined ? styles.secondaryButton : styles[variant]} ${ fullWidth ? styles.fullWidth : '' } ${ wide ? styles.wide : '' }` } 
+            onClick={ onClick }
+            disabled={ disabled }
             type="button"
         >
-            {props.children}
+            { props.children }
         </button>
     );
 };
 
 Button.propTypes = {
-    type: propTypes.string.isRequired,
+    variant: propTypes.oneOf(['primary', 'secondary', 'primaryOutlined', 'secondaryOutlined', 'primaryRounded']),
     fullWidth: propTypes.bool,
+    wide: propTypes.bool,
     onClick: propTypes.func.isRequired,
     disabled: propTypes.bool
 }

@@ -54,7 +54,7 @@ $dropdown-item-padding: 1.7rem 3rem;
     @extend %text-style;
 
     &:hover {
-        color: $hover-color;
+        color: $tertiary-color;
     }
 }
 
@@ -93,14 +93,24 @@ $dropdown-item-padding: 1.7rem 3rem;
     background-color: $secondary-color;
 }
 
-.dropdown-menu-item {
+.dropdownMenuItem {
     display: flex;
     width: 10rem;
     white-space: nowrap;
     justify-content: center;
     padding: $dropdown-item-padding;
     @extend %text-style;
+    &.logout {
+        background-color: $highlight-color;
+        color: $secondary-color;
+        &:hover {
+            background-color: $highlight-light-color;
+            color: $secondary-color;
+        }
+    }
 }
+
+
 
 @media only screen and (max-width: 600px) {
     .navbar {

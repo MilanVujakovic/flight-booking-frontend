@@ -103,21 +103,21 @@ const PersonalInfo = props => {
                 <InputLabel>Date of Birth *</InputLabel>
                 <div className={ styles.dateOfBirth }>
                     <Autocomplete
-                        id="dobDay"
-                        value = { dobDay === '' ? null : dobDay }
-                        options={ dayOptions() }
-                        style={{ flex: 0.4 }}
-                        renderInput={ (params) => <TextField {...params} error={ errors.dobDay ? true : false } helperText={ errors.dobDay || '' }  label="Day" /> }
+                        id="dobMonth"
+                        value={ dobMonth === '' ? null : dobMonth }
+                        options={ monthOptions.map(option => option.title) }
+                        style={{ flex: 0.7, marginRight: '1rem' }}
+                        renderInput={ (params) => <TextField {...params} error={ errors.dobMonth ? true : false } helperText={ errors.dobMonth || '' } label="Month" /> }
                         onChange={ onAutocompleteChange }
                         disableClearable
                         autoHighlight
                     />
                     <Autocomplete
-                        id="dobMonth"
-                        value={ dobMonth === '' ? null : dobMonth }
-                        options={ monthOptions.map(option => option.title) }
-                        style={{ flex: 0.7, marginLeft: '1rem' }}
-                        renderInput={ (params) => <TextField {...params} error={ errors.dobMonth ? true : false } helperText={ errors.dobMonth || '' } label="Month" /> }
+                        id="dobDay"
+                        value = { dobDay === '' ? null : dobDay }
+                        options={ dayOptions() }
+                        style={{ flex: 0.4 }}
+                        renderInput={ (params) => <TextField {...params} error={ errors.dobDay ? true : false } helperText={ errors.dobDay || '' }  label="Day" /> }
                         onChange={ onAutocompleteChange }
                         disableClearable
                         autoHighlight

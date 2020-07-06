@@ -6,21 +6,23 @@ $primary-text-color: white;
 $secondary-color: #ffffff;
 $secondary-dark-color: #f1f1f1;
 $secondary-darker-color: #d1d1d1;
-$secondary-text-color: #2e94b9;
+$secondary-text-color: $primary-color;
 
-$tertiary-color: #2bc34f;
-
+$tertiary-color: #32dfba; 
 
 $highlight-color: rgba(244,67,54, 0.8);
+$highlight-light-color: rgba(244,67,54, 0.9);
 $highlight-contrast-color: #ffffff;
 $shadow-color: rgba(0, 0, 0, 0.19);
 
 $text-color: $primary-dark-color;
 $link-color: $primary-color;
-$font-color: #6d6d6d;
+$font-color: #353535;
+$font-dark-color: #111111;
+$border-color: #32dfba;
 
 $hover-color: #beefff;
 
 $form-background-color: #f5f4f4;
-$progress-line-color: $primary-dark-color;
+$progress-line-color: $tertiary-color;
 $progress-text-color: #c3c3c3;

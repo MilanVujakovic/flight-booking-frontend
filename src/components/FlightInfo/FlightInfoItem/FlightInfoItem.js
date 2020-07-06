@@ -12,7 +12,7 @@ const FlightInfoItem = props => (
         </div>
         <div className={styles["duration"]}>2h</div>
         <div className={styles["price"]}>300$</div>
-        <div className={styles["select-button"]}><Button type={props.buttonType}>Select</Button></div>
+        <div className={styles["select-button"]}><Button type={props.buttonType} onClick= { () => console.log('item!')}>Select</Button></div>
     </div>
 );
 

@@ -32,12 +32,12 @@ export const FormStep = props => {
             <div className={styles["progress-bar"]}>
                 {
                     hasBack && 
-                    <Button type="primaryOutlinedButton" onClick={ onBack }>
+                    <Button variant="primaryOutlined" onClick={ onBack }>
                         { backText }
                     </Button>
                 }
                 
-                <Button type="primaryButton" fullWidth={ !hasBack } onClick={ onForward } disabled={ disableOnForward }>
+                <Button variant="primary" fullWidth={ !hasBack } onClick={ onForward } disabled={ disableOnForward }>
                     { forwardText }
                 </Button>
             </div>

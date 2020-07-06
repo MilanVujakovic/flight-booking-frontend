@@ -67,8 +67,8 @@ const DropdownMenu = ({ onLogout, onDropdownToggle }) => {
 
     const DropdownItem = (props) => {
             return (  props.button 
-                ? <button className={styles['dropdown-menu-item']} onClick={ onLogout }>{ props.children }</button> 
-                : <Link to={props.to} className={styles['dropdown-menu-item']} onClick={ onDropdownToggle }>{ props.children }</Link>
+                ? <button className={ `${ styles.dropdownMenuItem } ${styles.logout}` } onClick={ onLogout }>{ props.children }</button> 
+                : <Link to={props.to} className={styles.dropdownMenuItem} onClick={ onDropdownToggle }>{ props.children }</Link>
             );
     };
 

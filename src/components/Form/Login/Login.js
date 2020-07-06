@@ -48,7 +48,7 @@ const Login = props => {
                         </div>
 
                     <div className={styles["progress-bar"]}>
-                        <Button type="primaryButton" fullWidth onClick={ onLogin } disabled={ isLoading }>Login</Button>
+                        <Button variant="primary" fullWidth onClick={ onLogin } disabled={ isLoading }>Login</Button>
                     </div>
                 </div>
 

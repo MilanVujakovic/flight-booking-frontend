@@ -1,35 +1,36 @@
-import React from "react";
+import React from 'react';
+import styles from './FlightSearch.module.scss';
 
-import styles from "./FlightSearch.module.scss";
+import FlightSearchItem from './FlightSearchItem';
+import Button from '../Button';
+import propTypes from 'prop-types';
 
-
-import FlightSearchBox from "./FlightSearchBox";
-import Button from "../Button";
-
-const FlightSearch = props => (
-    <div className={styles["search-back-image"]}>
+const FlightSearch = props => {
+    const { searchType, onSearchTypeChange, onSearch } = props;
+    return (
+    <div className={ styles.searchBackImage }>
         <div>
             <h1>Flight search</h1>
         </div>
-        <div className={styles["search"]}>
+        <div className={styles.search}>
             {/* Flight search type */}
-            <div className={styles["search-type"]}>
-                <div>One way</div>
-                <div>Return</div>
-                <div>Multi-city</div>
+            <div className={ styles.searchType }>
+                <button className={ searchType === 1 ? styles.active : '' } onClick={ (e) => onSearchTypeChange(e, 1) } >One way</button>
+                <button className={ searchType === 2 ? styles.active : '' } onClick={ (e) => onSearchTypeChange(e, 2) } >Return</button>
+                <button className={ searchType === 3 ? styles.active : '' } onClick={ (e) => onSearchTypeChange(e, 3) } >Multi-city</button>
             </div>
 
-            {/* Search boxes */}
-            <div className={styles["search-boxes"]}>
-                <FlightSearchBox />
-            </div>
+            <FlightSearchItem { ...props } />
 
-            {/* Search button */}
-            <div className={styles["search-submit"]}>
-                <Button type="primary-secondary-button">Search</Button>
-            </div>
+            <Button variant="secondary" onClick={ onSearch } wide >Search</Button>
         </div>
     </div>
-);
+    );
+};
+
+FlightSearch.propTypes = {
+    searchType: propTypes.oneOf([1, 2, 3]).isRequired,
+    onSearchTypeChange: propTypes.func.isRequired
+}
 
 export default FlightSearch;

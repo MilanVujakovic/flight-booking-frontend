@@ -102,17 +102,23 @@ const FlightSearchItem = props => {
         openPopover, 
         popoverRef, 
         onClassChange, 
-        onTravellersChange
+        onTravellersChange,
+        variant,
+        id,
+        addOption,
+        removeOption
      } = props;
     
     return (
         <div className={ styles.flightSearchItem }>
             {/* --- From --- */}
             <SearchBox
+                id={ id }
                 headerText="From"
                 buttonText={ searchData.from }
                 popoverName="fromCityPopover"
                 onBoxClick={ onBoxClick }
+                onBoxClickAction={ onBoxClickActions.POPOVER }
                 openPopover={ openPopover }
                 popoverRef={ popoverRef }
                 wide
@@ -126,10 +132,12 @@ const FlightSearchItem = props => {
             </SearchBox>
             {/* --- To --- */}
             <SearchBox
+                id={ id }
                 headerText="To"
                 buttonText={ searchData.to }
                 popoverName="toCityPopover"
                 onBoxClick={ onBoxClick }
+                onBoxClickAction={ onBoxClickActions.POPOVER }
                 openPopover={ openPopover }
                 popoverRef={ popoverRef }
                 wide
@@ -143,10 +151,12 @@ const FlightSearchItem = props => {
             </SearchBox>
             {/* --- Departure --- */}
             <SearchBox
+                id={ id }
                 headerText="Departure"
                 buttonText={ dateToString(searchData.departure) }
                 popoverName="departurePopover"
                 onBoxClick={ onBoxClick }
+                onBoxClickAction={ onBoxClickActions.POPOVER }
                 openPopover={ openPopover }
                 popoverRef={ popoverRef }
             >
@@ -158,53 +168,90 @@ const FlightSearchItem = props => {
                 />
             </SearchBox>
             {/* --- Return --- */}
-            <SearchBox
-                headerText="Return"
-                buttonText={ dateToString(searchData.return) }
-                popoverName="returnPopover"
-                onBoxClick={ onBoxClick }
-                openPopover={ openPopover }
-                popoverRef={ popoverRef }
-            >
-                <DatePopover 
-                    onDepartureDateChange={ onDepartureDateChange }
-                    value={ searchData.return }
-                    dataLabel="return"
-                    minDate={ searchData.departure }
-                />
-            </SearchBox>
+            { variant === 'return' &&
+                <SearchBox
+                    id={ id }
+                    headerText="Return"
+                    buttonText={ dateToString(searchData.return) }
+                    popoverName="returnPopover"
+                    onBoxClick={ onBoxClick }
+                    onBoxClickAction={ onBoxClickActions.POPOVER }
+                    openPopover={ openPopover }
+                    popoverRef={ popoverRef }
+                >
+                    <DatePopover 
+                        onDepartureDateChange={ onDepartureDateChange }
+                        value={ searchData.return }
+                        dataLabel="return"
+                        minDate={ searchData.departure }
+                    />
+                </SearchBox>
+            }
             {/* --- Class & Travellers --- */}
-            <SearchBox
-                headerText="Class & Travellers"
-                buttonText={ searchData.class }
-                popoverName="classTravellersPopover"
-                onBoxClick={ onBoxClick }
-                openPopover={ openPopover }
-                popoverRef={ popoverRef }
-                wide
-            >
-                <ClassTravellersPopover 
-                    classValue={ searchData.class } 
-                    onClassChange={ onClassChange } 
-                    travellers={ searchData.travellers }
-                    onTravellersChange={ onTravellersChange }
+            { variant === 'multiCity' ||
+                <SearchBox
+                    id={ id }
+                    headerText="Class & Travellers"
+                    buttonText={ searchData.class }
+                    popoverName="classTravellersPopover"
+                    onBoxClick={ onBoxClick }
+                    onBoxClickAction={ onBoxClickActions.POPOVER }
+                    openPopover={ openPopover }
+                    popoverRef={ popoverRef }
+                    wide
+                >
+                    <ClassTravellersPopover 
+                        classValue={ searchData.class } 
+                        onClassChange={ onClassChange } 
+                        travellers={ searchData.travellers }
+                        onTravellersChange={ onTravellersChange }
+                    />
+                </SearchBox> 
+            }
+            {/* --- Add --- */}
+            { (variant === 'multiCity' && addOption) &&
+                <SearchBox
+                    id={ id }
+                    headerText="Add city"
+                    icon= { <AddIcon /> }
+                    onBoxClick={ onBoxClick }
+                    onBoxClickAction={ onBoxClickActions.ADD_CITY }
                 />
-            </SearchBox> 
+            }
+
+            {/* --- Remove  --- */}
+            { (variant === 'multiCity' && removeOption) &&
+                <SearchBox
+                    id={ id }
+                    headerText="Remove city"
+                    icon={ <RemoveIcon /> }
+                    onBoxClick={ onBoxClick }
+                    onBoxClickAction={ onBoxClickActions.REMOVE_CITY }
+                />
+            }
         </div>
     );
 };
 
+export const onBoxClickActions = {
+    POPOVER: 'POPOVER', 
+    ADD_CITY: 'ADD_CITY',
+    REMOVE_CITY: 'REMOVE_CITY'
+};
+
 const SearchBox = props => {
-    const { wide, headerText, buttonText, popoverName, onBoxClick, openPopover, popoverRef } = props;
-    const isOpen = openPopover === popoverName ? true : false;
+    const { id, wide, headerText, buttonText, popoverName, onBoxClick, onBoxClickAction, openPopover, popoverRef, icon } = props;
+    const onBoxClickValue = popoverName !== undefined ? popoverName + id : id;
+
+    const isOpen = openPopover === onBoxClickValue ? true : false;
     return (
         <div className={ `${ styles.SearchOptionBox } ${ wide ? styles.wide : '' }` } ref={ isOpen ? popoverRef : null }>
             <span className={ styles.boxHeader }>{ headerText }</span>
             <button
                 className={ styles.boxContent }
-                onClick={ () => onBoxClick(popoverName) } 
+                onClick={ () => onBoxClick(onBoxClickAction, onBoxClickValue) } 
             >
-                { buttonText }
+                { icon }{ buttonText }
             </button>
             {
                 isOpen && props.children
@@ -214,13 +261,16 @@ const SearchBox = props => {
 };
 
 SearchBox.propTypes = {
+    id: propTypes.number.isRequired,
     headerText: propTypes.string.isRequired,
-    buttonText: propTypes.string.isRequired,
-    popoverName: propTypes.string.isRequired,
-    onBoxClick: propTypes.func.isRequired,
-    openPopover: propTypes.string.isRequired,
-    popoverRef: propTypes.object.isRequired,
+    buttonText: propTypes.string,
+    popoverName: propTypes.string,
+    onBoxClick: propTypes.func,
+    openPopover: propTypes.string,
+    popoverRef: propTypes.object,
+    icon: propTypes.element,
     wide: propTypes.bool,
+
 }
 
 CityPopover.propTypes = {

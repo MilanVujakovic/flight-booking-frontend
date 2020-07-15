@@ -16,6 +16,7 @@ $padding-outlined: (1.2 - $border-outlined) 3rem;
     font-weight: 500;
     text-align: center;
     outline: none;
+    box-shadow: $box-shadow;
 
     &.fullWidth {
         width: 100%;
@@ -55,6 +56,25 @@ $padding-outlined: (1.2 - $border-outlined) 3rem;
     &:hover {
         background-color: $secondary-dark-color;
         color: $secondary-text-color;
+    }
+}
+
+.secondary2 {
+    @extend .secondary;
+    color: $tertiary-color;
+    &:hover {
+        color: darken($tertiary-color, 20%);
+    }
+}
+
+.tertiary {
+    @extend %button;
+    padding: $padding-standard;
+
+    background-color: $tertiary-color;
+    color: $secondary-color;
+    &:hover {
+        background-color: rgba($tertiary-color, 0.8);
     }
 }
 

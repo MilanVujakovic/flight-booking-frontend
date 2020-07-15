@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 
 import FlightSearch from './FlightSearch';
 import { FlightClasses } from '../../utils/AutocompleteConsts';
+import { onBoxClickActions } from './FlightSearchItem';
 
-const MAX_TRAVELLERS = 10;
+export const MAX_TRAVELLERS = 10;
+export const MAX_CITIES = 5;
 
 class FlightSearchContainer extends Component {
 
@@ -25,6 +27,7 @@ class FlightSearchContainer extends Component {
                     children: 0
                 }
             },
+            multiCity: [this.newMultiCityObject(new Date())],
             openPopover: '',
             CityOptions: [ 'Belgrade', 'Budapest', 'Zagreb' ]
         }
@@ -47,6 +50,14 @@ class FlightSearchContainer extends Component {
     handleSearchTypeChange = (event, type) => {
         event.preventDefault();
         this.setState({ searchType: type });
+        const cityArray = this.state.multiCity;
+        if(type === 3 && (cityArray === undefined || cityArray.length === 0)) {
+            this.setState(state => {
+                return {
+                    multiCity: [this.newMultiCityObject(state.searchData.departure)]
+                }
+            });
+        }
     }
 
     handleDepartureDateChange = (dataLabel, value) => {
@@ -73,8 +84,34 @@ class FlightSearchContainer extends Component {
         });
     }
 
-    handleBoxClick = searchBoxName => {
-        this.setState({ openPopover: searchBoxName });
+    handleBoxClick = (action, value) => {
+        const { POPOVER, ADD_CITY, REMOVE_CITY } = onBoxClickActions;
+    
+        switch(action) {
+            case POPOVER:
+                this.setState({ openPopover: value });
+                break;
+            case ADD_CITY:
+                if(this.state.multiCity.length + 1 !== MAX_CITIES) {
+                    const addArray = [...this.state.multiCity , this.newMultiCityObject(this.state.multiCity[value].departure)];
+                    this.setState({ multiCity: addArray });
+                }
+                break;
+            case REMOVE_CITY:
+                const removeArray = [...this.state.multiCity];
+                removeArray.splice(value, 1);
+                this.setState({ multiCity: removeArray });
+                break;
+            default: console.log('Wrong action name.');
+        }
+    }
+
+    newMultiCityObject = departure => {
+        return { 
+            from: '', 
+            to: '', 
+            departure: departure 
+        }
     }
 
     handleAutocompleteChange = (dataLabel, value) => {

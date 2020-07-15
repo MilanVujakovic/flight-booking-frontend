@@ -39,6 +39,7 @@ h1 {
 
 /* Main content */
 .searchType {
+    width: 30%;
     display: flex;
     flex-direction: row;
     white-space: nowrap;
@@ -76,12 +77,11 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     margin: 1rem;
-    width: 90%;
+    width: 100%;
     border-radius: $border-radius;
 }
 
 %box {
-    flex: 1;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -112,7 +112,11 @@ $box-text-color: darken($tertiary-color, 10%);
     border-collapse: separate;
 
     &.wide {
-        flex: 2;
+        min-width: 20vw;
+    }
+
+    &:last-child {
+        flex: 1;
     }
 
     .boxHeader {
@@ -206,9 +210,17 @@ $box-text-color: darken($tertiary-color, 10%);
 }
 
 @media only screen and (max-aspect-ratio: 3/4) {
+    .searchType {
+        width: 90%;
+    }
+
     .flightSearchItem {
         flex-direction: column;
         min-width: 80vw;
+    }
+
+    .SearchOptionBox {
+        flex: 1;
     }
 
     .searchButton {
